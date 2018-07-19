@@ -1,4 +1,9 @@
 *.db
+db*
+*.sqlite
 .idea
+.pycharmrc
 venv
 __pycache__
+*.pyc
+.cache

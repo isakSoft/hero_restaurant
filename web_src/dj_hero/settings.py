@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
 
     #core
-    'apps.restaurants'
+    'apps.restaurants',
 ]
 
 MIDDLEWARE = [
@@ -82,6 +82,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'TEST': {
+            'NAME': os.path.join(BASE_DIR, 'test_db.sqlite3'),
+            'ENGINE': 'django.db.backends.sqlite3',
+        }
     }
 }
 

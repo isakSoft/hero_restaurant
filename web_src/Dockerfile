@@ -13,7 +13,7 @@ LABEL Name=hero_restaurant Version=0.0.1
 EXPOSE 8000
 
 WORKDIR /app
-ADD . /app
+ADD .. /app
 
 # Using pip:
 RUN python3 -m pip install -r requirements.txt

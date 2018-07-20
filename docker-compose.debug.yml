@@ -5,6 +5,6 @@ services:
     image: hero_restaurant
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: web_src/Dockerfile
     ports:
         - 8000:8000

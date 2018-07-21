@@ -21,12 +21,12 @@ Requirements
 4. Start services: 
 
         docker-compose up
-5. In Docker Quickstart Terminal you will find the <IP> of the machine
+5. In Docker Quickstart Terminal you will find the IP of the machine
 
 ### Project instructions
 
 1. Inside project is found .env file, please find ALLOWED_HOSTS.
-2. Append you <IP> in ALLOWED_HOSTS 
+2. Append you IP in ALLOWED_HOSTS environment variable
 
 ### Running Unit Tests 
 Docker Services may not be running when running unittest 

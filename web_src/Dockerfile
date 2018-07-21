@@ -5,12 +5,14 @@
 # See https://hub.docker.com/r/library/python/ for all supported Python
 # tags from Docker Hub.
 FROM python:alpine
+RUN apk add --update build-base readline-dev postgresql-dev
+#alpine-sdk
 
 # If you prefer miniconda:
 #FROM continuumio/miniconda3
 
 #explicit group/user
-RUN groupadd -r exposedtopublic --gid=1000 && useradd -m -r -g exposedtopublic --uid=1000 exposedtopublic
+#RUN groupadd -r exposedtopublic --gid=1000 && useradd -m -r -g exposedtopublic --uid=1000 exposedtopublic
 
 LABEL Name=hero_restaurant Version=0.0.1
 EXPOSE 8000
@@ -30,13 +32,15 @@ EXPOSE 8000
 
 ENV PYTHONUNBUFFERED 1
 
-RUN mkdir -p /app /static /media /cache && chown -R exposedtopublic:exposedtopublic /media /cache
+RUN mkdir -p /app /static /media /cache
+#&& chown -R exposedtopublic:exposedtopublic /media /cache
 
 WORKDIR /app
-ADD .. /app
+ADD . /app
 
 COPY requirements.txt /requirements.txt
 COPY docker-entrypoint.sh /docker-entrypoint.sh
+
 # Using pip:
 RUN python3 -m pip install --no-cache-dir --upgrade -r requirements.txt
 CMD ["python3", "-m", "hero_restaurant"]
@@ -48,4 +52,4 @@ ENV DATA_DIR /cache
 COPY . /app
 
 VOLUME ["/static", "/media", "/cache", "/app"]
-ENTRYPOINT ["/docker-entrypoint.sh"]
+#ENTRYPOINT ["/docker-entrypoint.sh"]

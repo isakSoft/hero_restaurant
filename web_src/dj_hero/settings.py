@@ -23,10 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'kc$3###%ca6e+4h57v-(2(nsynbeaa@_%zu7m(j0it6zc=4yi&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', True)
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', ['*']) #only for development if DEBUG true
 
 # Application definition
 
@@ -77,18 +76,34 @@ WSGI_APPLICATION = 'dj_hero.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
+DATABASE = os.environ.get('DATABASE', 'sqlite3')
+POSTGRES_HOST = os.environ.get('DB_SERVICE', 'postgres')
+DB_NAME = os.environ.get('DB_NAME', 'default')
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        'TEST': {
-            'NAME': os.path.join(BASE_DIR, 'test_db.sqlite3'),
+if DATABASE == 'sqlite3':
+    DATABASES = {
+        'default': {
             'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+            'TEST': {
+                'NAME': os.path.join(BASE_DIR, 'test_db.sqlite3'),
+                'ENGINE': 'django.db.backends.sqlite3',
+            }
         }
     }
-}
-
+elif DATABASE == 'postgresql':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': DB_NAME,
+            'USER': os.environ['DB_USER'],
+            'PASSWORD': os.environ['DB_PASS'],
+            'HOST': POSTGRES_HOST,
+            'PORT': os.environ['DB_PORT']
+        }
+    }
+else:
+    raise RuntimeError('Bad django configuration. Invalid DATABASE type')
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -126,4 +141,5 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = '/static/'

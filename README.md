@@ -43,11 +43,11 @@ Sample api call:
     
 | Action   | Http Method | URL                                                                         | DATA                    |
 |----------|-------------|-----------------------------------------------------------------------------|-------------------------|
-| Create   | POST        | http://<IP>:8000/restaurant/                                                | {  "name": "Berlin 4" } |
-| List     | GET         | http://<IP>:8080/restaurant/                                                |                         |
-| Retrieve | GET         | http://<IP>:8080/restaurant/<pk>/                                           |                         |
-| Update   | PUT         | http://<IP>:8000/restaurant/<pk>/                                           |                         |
-| Delete   | DELETE      | http://<IP>:8000/restaurant/<pk>/                                           |                         |
+| Create   | POST        | http://IP:8000/restaurant/                                                | {  "name": "Berlin 4" } |
+| List     | GET         | http://IP:8080/restaurant/                                                |                         |
+| Retrieve | GET         | http://IP:8080/restaurant/<pk>/                                           |                         |
+| Update   | PUT         | http://IP:8000/restaurant/<pk>/                                           |                         |
+| Delete   | DELETE      | http://IP:8000/restaurant/<pk>/                                           |                         |
     
     <IP> ===> Docker machine IP
     <pk> ===> Primary Key of Model Restaurant    

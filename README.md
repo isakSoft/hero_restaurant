@@ -41,14 +41,15 @@ Please download Postman Collection from
 
 Sample api call:
     
-| Action   | Http Method | URL                                                                         | DATA                    |
+| Action   | Http Method | URL                                                                         | REQUEST BODY DATA                    |
 |----------|-------------|-----------------------------------------------------------------------------|-------------------------|
 | Create   | POST        | http://IP:8000/restaurant/                                                | {  "name": "Berlin 4" } |
 | List     | GET         | http://IP:8080/restaurant/                                                |                         |
 | Retrieve | GET         | http://IP:8080/restaurant/pk/                                           |                         |
-| Update   | PUT         | http://IP:8000/restaurant/pk/                                           |                         |
+| Update   | PUT         | http://IP:8000/restaurant/pk/                                           |     { "name": "Berlin 333", "opens_at":"09:00:00", "closes_at": "22:00:00" }                    |
 | Delete   | DELETE      | http://IP:8000/restaurant/pk/                                           |                         |
     
+    * Content-Type: application/json
     <IP> ===> Docker machine IP
     <pk> ===> Primary Key of Model Restaurant    
     Sample URL: http://192.168.99.100:8080/restaurant/1/        (pk=1)
